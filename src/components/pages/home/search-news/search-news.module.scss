@@ -1,0 +1,14 @@
+.searchInputWrapper {
+  position: relative;
+  width: fit-content;
+
+  @media (max-width: 480px) {
+    margin-top: $xs-size;
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  right: $sm-size;
+  top: 1px;
+}
