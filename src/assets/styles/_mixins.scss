@@ -1,0 +1,11 @@
+@mixin container-padding {
+  padding: $md-size 10%;
+
+  @media(max-width: 480px) {
+    padding: $md-size;
+  }
+
+  @media(max-width: 780px) {
+    padding: $md-size $xxl-size;
+  }
+}
