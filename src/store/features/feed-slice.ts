@@ -1,12 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export type FeedState = {
-  newsAPI: any;
+  newsAPI: { sources: string };
+  guardian: { category: string };
 };
 
 const initialState: FeedState = {
   newsAPI: {
     sources: 'cnn',
+  },
+  guardian: {
+    category: 'games',
   },
 };
 
@@ -20,9 +24,15 @@ export const feedSlice = createSlice({
         ...action.payload,
       };
     },
+    setGuardianState: (state, action) => {
+      state.guardian = {
+        ...state.guardian,
+        ...action.payload,
+      };
+    },
   },
 });
 
-export const { setNewsAPIState } = feedSlice.actions;
+export const { setNewsAPIState, setGuardianState } = feedSlice.actions;
 
 export default feedSlice.reducer;

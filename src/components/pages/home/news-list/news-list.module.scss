@@ -46,6 +46,17 @@
   color: $secondary-dark;
 }
 
+.link {
+  font-size: $sm-size;
+  font-weight: bold;
+  color: $secondary-dark;
+  margin-top: $md-size;
+  &:hover {
+    cursor: pointer;
+    color: $primary-dark;
+  }
+}
+
 .newsImage {
   object-fit: contain;
   order: 2;

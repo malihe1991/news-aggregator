@@ -6,10 +6,11 @@ export type TApiCall = {
 };
 
 type ListType = {
-  author: string;
+  author?: string;
   from: string;
   title: string;
-  image: string;
+  webUrl?: string;
+  image?: string;
 };
 
 export type NewsListType = {
@@ -24,7 +25,7 @@ export type FilterType = {
 };
 
 export type FeedOptionType = {
-  author: string;
-  category: string;
-  sources: string;
+  author?: string;
+  category?: string;
+  sources?: string;
 };

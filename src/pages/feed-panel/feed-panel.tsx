@@ -5,17 +5,22 @@ import Input from '@/components/common/input';
 import DefaultLayout from '@/components/layout/default-layout';
 import styles from '@/components/pages/home/filter-news/filter-news.module.scss';
 import { FEED_OPTIONS } from '@/constants';
-import { setNewsAPIState } from '@/store/features/feed-slice';
+import { setNewsAPIState, setGuardianState } from '@/store/features/feed-slice';
 import { useAppDispatch } from '@/store/hook';
 import { FeedOptionType } from '@/types';
 
-const InitialNewsApiOptions = { author: '', category: '', sources: '' };
+const InitialNewsApiOptions = { sources: '' };
+const InitialGuardianOptions = { category: '' };
 
 const FeedPanel = () => {
   const dispatch = useAppDispatch();
 
   const [newsApiOptions, setNewsApiOptions] = useState<FeedOptionType>(
     InitialNewsApiOptions,
+  );
+
+  const [guardianOptions, setGuardianOptions] = useState<FeedOptionType>(
+    InitialGuardianOptions,
   );
 
   const sourceList = [
@@ -31,6 +36,21 @@ const FeedPanel = () => {
         },
       ],
     },
+    {
+      title: 'The Guardian: ',
+      handleSubmit: () => handleSubmit('guardian'),
+      items: [
+        {
+          name: 'category',
+          value: guardianOptions.category,
+          onChange: (e) =>
+            setGuardianOptions({
+              ...guardianOptions,
+              category: e.target.value,
+            }),
+        },
+      ],
+    },
   ];
 
   const handleSubmit = (storeName) => {
@@ -38,6 +58,10 @@ const FeedPanel = () => {
       case 'newsAPI':
         dispatch(setNewsAPIState(newsApiOptions));
         setNewsApiOptions(InitialNewsApiOptions);
+        break;
+      case 'guardian':
+        dispatch(setGuardianState(guardianOptions));
+        setGuardianOptions(InitialGuardianOptions);
         break;
     }
   };

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 import styles from './news-list.module.scss';
@@ -8,15 +7,19 @@ import { formatDate } from '@/utils/date';
 
 type NewsListProps = {
   newsList: NewsListType;
+  currentPage: number;
+  handlePageChange: (page: number) => void;
 };
-const NewsList = ({ newsList }: NewsListProps) => {
-  const [currentPage, setCurrentPage] = useState(1);
-
+const NewsList = ({
+  newsList,
+  currentPage,
+  handlePageChange,
+}: NewsListProps) => {
   const start = (currentPage - 1) * PAGE_SIZE;
   const end = start + PAGE_SIZE - 1;
 
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
+  const handleLink = (link: string) => () => {
+    window.open(link);
   };
 
   return (
@@ -24,10 +27,12 @@ const NewsList = ({ newsList }: NewsListProps) => {
       {newsList.list.slice(start, end).map((news, key) => (
         <div key={key} className={styles.card}>
           <div className={styles.newsContent}>
-            <div>
-              <span className={styles.authorPrefix}>by </span>
-              <span className={styles.authorName}>{news?.author}</span>
-            </div>
+            {news?.author && (
+              <div>
+                <span className={styles.authorPrefix}>by </span>
+                <span className={styles.authorName}>{news.author}</span>
+              </div>
+            )}
             <h4>{news?.title}</h4>
             <div>
               <span className={styles.publishedAtPrefix}>Published at: </span>
@@ -35,14 +40,21 @@ const NewsList = ({ newsList }: NewsListProps) => {
                 {formatDate(news?.from)}
               </span>
             </div>
+            {news?.webUrl && (
+              <div onClick={handleLink(news?.webUrl)} className={styles.link}>
+                Go to the site &rarr;
+              </div>
+            )}
           </div>
-          <img
-            src={news?.image}
-            width="150"
-            height="100"
-            alt="news_image"
-            className={styles.newsImage}
-          />
+          {news?.image && (
+            <img
+              src={news.image}
+              width="150"
+              height="100"
+              alt="news_image"
+              className={styles.newsImage}
+            />
+          )}
         </div>
       ))}
       <Pagination
