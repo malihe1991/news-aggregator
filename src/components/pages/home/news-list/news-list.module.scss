@@ -1,0 +1,62 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: $md-size 0;
+  border: 1px solid;
+  border-color: $secondary-light;
+  border-radius: 5px;
+  padding:$xs-size $md-size;
+
+  @media(max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+}
+
+.newsContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  order: 1;
+
+  @media(max-width: 480px) {
+    order: 2;
+    margin:$xs-size 0;
+  }
+}
+
+.authorPrefix, .publishedAtPrefix {
+  font-size: $xs-size;
+  font-weight: bold;
+  color: $primary-dark;
+  opacity: 0.6;
+}
+
+.authorName {
+  font-size: $sm-size;
+  font-weight: bold;
+  color: $primary-dark;
+  opacity: 0.8;
+}
+
+.publishedAt {
+  font-size: $xs-size;
+  color: $secondary-dark;
+}
+
+.newsImage {
+  object-fit: contain;
+  order: 2;
+
+  @media(max-width: 480px) {
+    order: 1;
+  }
+}
+
+.pagination {
+  margin: $xl-size 0;
+  display: flex;
+  justify-content: center;
+}
