@@ -1,0 +1,9 @@
+.button {
+  border: none;
+  padding: 5px $xxl-size;
+  color: $primary-onColor;
+  background-color: $primary;
+  &:hover {
+    cursor: pointer;
+  }
+}
