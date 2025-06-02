@@ -1,0 +1,17 @@
+.title {
+  color: $secondary;
+  margin-bottom: $xs-size;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  input {
+    margin: 0 $sm-size $sm-size 0;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
+}
